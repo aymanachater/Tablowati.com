@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr" dir="ltr">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tablowati | De Vrais Souvenirs Peints à la Main</title>
+    <title>Tablowati | لوحات فنية مرسومة باليد</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
@@ -52,7 +52,7 @@
         }
     </style>
 </head>
-<body class="antialiased text-gray-800">
+<body class="antialiased text-gray-800 arabic-font">
 
     <!-- Navigation -->
     <nav class="fixed w-full z-50 bg-black/95 backdrop-blur-md shadow-sm transition-all duration-300">
@@ -66,22 +66,22 @@
                 
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center gap-8">
-                    <a href="#gallery" class="text-gray-200 hover:text-[#d97736] font-medium transition-colors" data-i18n="navGallery">Nos Œuvres</a>
-                    <a href="#how-it-works" class="text-gray-200 hover:text-[#d97736] font-medium transition-colors" data-i18n="navHowItWorks">Comment ça Marche</a>
+                    <a href="#gallery" class="text-gray-200 hover:text-[#d97736] font-medium transition-colors" data-i18n="navGallery">أعمالنا</a>
+                    <a href="#how-it-works" class="text-gray-200 hover:text-[#d97736] font-medium transition-colors" data-i18n="navHowItWorks">طريقة العمل</a>
                     
                     <!-- Language Switcher -->
                     <div class="relative group">
                         <button class="flex items-center gap-1 text-gray-200 hover:text-[#d97736] font-medium text-sm border border-gray-600 rounded-full px-3 py-1">
-                            <span id="currentLang">FR</span>
+                            <span id="currentLang">AR</span>
                             <i class="fas fa-chevron-down text-xs"></i>
                         </button>
-                        <div class="absolute right-0 mt-2 w-28 bg-white rounded-md shadow-lg py-1 hidden group-hover:block border border-gray-100">
-                            <button onclick="changeLanguage('fr')" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#d97736]">Français</button>
+                        <div class="absolute right-0 rtl:right-auto rtl:left-0 mt-2 w-28 bg-white rounded-md shadow-lg py-1 hidden group-hover:block border border-gray-100">
                             <button onclick="changeLanguage('ar')" class="block w-full text-right px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#d97736] font-['Cairo']">العربية</button>
+                            <button onclick="changeLanguage('fr')" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#d97736]">Français</button>
                         </div>
                     </div>
 
-                    <a href="#order" class="bg-[#d97736] text-white px-6 py-2.5 rounded-full font-medium hover:bg-[#b85b22] transition-colors shadow-md shadow-[#d97736]/20" data-i18n="navOrder">Commander</a>
+                    <a href="#order" class="bg-[#d97736] text-white px-6 py-2.5 rounded-full font-medium hover:bg-[#b85b22] transition-colors shadow-md shadow-[#d97736]/20" data-i18n="navOrder">اطلب الآن</a>
                 </div>
 
                 <!-- Mobile Menu Button & Lang Switcher -->
@@ -89,8 +89,8 @@
                     <!-- Mobile Lang Switch -->
                     <div class="relative flex items-center">
                         <select id="mobileLang" onchange="changeLanguage(this.value)" class="appearance-none bg-transparent text-gray-200 font-medium text-sm px-2 py-1 pr-5 rtl:pr-2 rtl:pl-5 border border-gray-700 rounded-lg focus:outline-none cursor-pointer">
+                            <option value="ar" class="text-black" selected>AR</option>
                             <option value="fr" class="text-black">FR</option>
-                            <option value="ar" class="text-black">AR</option>
                         </select>
                         <i class="fas fa-chevron-down absolute right-1.5 rtl:right-auto rtl:left-1.5 text-gray-200 text-[10px] pointer-events-none"></i>
                     </div>
@@ -104,9 +104,9 @@
         <!-- Mobile Menu Panel -->
         <div class="hidden md:hidden bg-black border-t border-gray-800" id="mobile-menu">
             <div class="px-4 pt-2 pb-4 space-y-2">
-                <a href="#gallery" class="block px-3 py-2 text-gray-200 hover:text-[#d97736] font-medium" data-i18n="navGallery">Nos Œuvres</a>
-                <a href="#how-it-works" class="block px-3 py-2 text-gray-200 hover:text-[#d97736] font-medium" data-i18n="navHowItWorks">Comment ça Marche</a>
-                <a href="#order" class="block px-3 py-2 text-[#d97736] font-bold" data-i18n="navOrder">Commander</a>
+                <a href="#gallery" class="block px-3 py-2 text-gray-200 hover:text-[#d97736] font-medium" data-i18n="navGallery">أعمالنا</a>
+                <a href="#how-it-works" class="block px-3 py-2 text-gray-200 hover:text-[#d97736] font-medium" data-i18n="navHowItWorks">طريقة العمل</a>
+                <a href="#order" class="block px-3 py-2 text-[#d97736] font-bold" data-i18n="navOrder">اطلب الآن</a>
             </div>
         </div>
     </nav>
@@ -118,20 +118,20 @@
                 
                 <!-- Text Content -->
                 <div class="w-full lg:w-1/2 text-center lg:text-left rtl:lg:text-right">
-                    <p class="text-[#d97736] font-semibold tracking-wider uppercase mb-3 text-sm" data-i18n="heroSubtitle">Art 100% Peint à la main</p>
+                    <p class="text-[#d97736] font-semibold tracking-wider uppercase mb-3 text-sm" data-i18n="heroSubtitle">فن مرسوم باليد 100%</p>
                     <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-gray-900 art-font" data-i18n="heroTitle">
-                        De Vrais Coups de Pinceau pour de <span class="text-[#d97736]">Vrais Souvenirs</span>
+                        لمسات فرشاة حقيقية لذكريات <span class="text-[#d97736]">لا تُنسى</span>
                     </h1>
                     <p class="text-lg text-gray-600 mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0" data-i18n="heroDesc">
-                        Envoyez une photo de vous, de votre famille ou d'un proche, et je la peindrai personnellement à la main sur une toile premium. <strong class="text-[#d97736]">C'est de l'art authentique créé avec de vrais pinceaux et de la peinture, PAS de l'impression numérique.</strong> Transformez vos moments spéciaux en chefs d'œuvre intemporels.
+                        أرسل صورتك، صورة عائلتك أو شخص عزيز، وسأقوم برسمها يدوياً بالكامل على قماش عالي الجودة. <strong class="text-[#d97736]">هذا فن أصيل تم إنشاؤه بفرش وألوان حقيقية، وليس طباعة رقمية.</strong> حوّل لحظاتك الخاصة إلى تحف فنية تدوم للأبد.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                         <a href="#order" class="bg-[#d97736] text-white px-8 py-3.5 rounded-full font-semibold hover:bg-[#b85b22] transition-all transform hover:-translate-y-1 shadow-lg shadow-[#d97736]/30 flex items-center justify-center gap-2">
                             <i class="fab fa-whatsapp text-xl"></i>
-                            <span data-i18n="btnOrderHero">Commander via WhatsApp</span>
+                            <span data-i18n="btnOrderHero">الطلب عبر واتساب</span>
                         </a>
                         <a href="#gallery" class="bg-white text-gray-800 border-2 border-gray-200 px-8 py-3.5 rounded-full font-semibold hover:border-gray-300 hover:bg-gray-50 transition-all text-center" data-i18n="btnGalleryHero">
-                            Voir la Galerie
+                            تصفح المعرض
                         </a>
                     </div>
                 </div>
@@ -158,8 +158,8 @@
     <section id="how-it-works" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 art-font" data-i18n="stepsTitle">Comment ça Marche</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto" data-i18n="stepsSubtitle">Simple, transparent, et conçu pour vous offrir l'œuvre d'art parfaite peinte à la main.</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 art-font" data-i18n="stepsTitle">طريقة العمل</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto" data-i18n="stepsSubtitle">بسيطة، واضحة، ومصممة لتقديم اللوحة الفنية المثالية لك.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
@@ -168,24 +168,24 @@
                     <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm border border-gray-100">
                         <i class="fas fa-images text-2xl text-[#d97736]"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-900" data-i18n="step1Title">1. La Photo et la Taille</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed" data-i18n="step1Desc">Remplissez le formulaire avec la taille souhaitée. Ensuite, vous serez redirigé vers WhatsApp pour m'envoyer la photo que vous souhaitez peindre.</p>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900" data-i18n="step1Title">1. الصورة والقياس</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed" data-i18n="step1Desc">املأ الاستمارة بالقياس المطلوب. بعدها سيتم توجيهك لواتساب لإرسال الصورة التي تريد رسمها.</p>
                 </div>
                 <!-- Step 2 -->
                 <div class="text-center p-6 rounded-2xl bg-gray-50 border border-gray-100 hover:shadow-lg transition-shadow">
                     <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm border border-gray-100">
                         <i class="fas fa-check-circle text-2xl text-[#d97736]"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-900" data-i18n="step2Title">2. Confirmation</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed" data-i18n="step2Desc">Je confirmerai les détails avec vous. Une petite avance est demandée pour garantir votre commande exclusive et commencer le travail.</p>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900" data-i18n="step2Title">2. التأكيد</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed" data-i18n="step2Desc">سأؤكد معك التفاصيل. نطلب تسبيقاً بسيطاً لضمان طلبك الحصري والبدء في العمل.</p>
                 </div>
                 <!-- Step 3 -->
                 <div class="text-center p-6 rounded-2xl bg-gray-50 border border-gray-100 hover:shadow-lg transition-shadow">
                     <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm border border-gray-100">
                         <i class="fas fa-paint-brush text-2xl text-[#d97736]"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-900" data-i18n="step3Title">3. Peinture et Livraison</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed" data-i18n="step3Desc">Je commencerai à peindre votre toile à la main avec de vrais pinceaux. Une fois terminée, vous paierez le reste à la livraison.</p>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900" data-i18n="step3Title">3. الرسم والتوصيل</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed" data-i18n="step3Desc">سأبدأ برسم لوحتك يدوياً بالفرشاة. عند الانتهاء، ستدفع الباقي عند الاستلام.</p>
                 </div>
             </div>
         </div>
@@ -195,8 +195,8 @@
     <section id="gallery" class="py-20 hero-pattern">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 art-font" data-i18n="galleryTitle">Nos Chefs d'œuvre</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto" data-i18n="gallerySubtitle">Un aperçu des toiles peintes à la main pour nos clients.</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 art-font" data-i18n="galleryTitle">أعمالنا الفنية</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto" data-i18n="gallerySubtitle">نظرة على بعض اللوحات المرسومة يدوياً لزبنائنا.</p>
             </div>
             
             <!-- 4 Images Grid -->
@@ -225,8 +225,8 @@
                 <div class="absolute top-0 right-0 w-32 h-32 bg-[#d97736] rounded-bl-full opacity-5 pointer-events-none"></div>
                 
                 <div class="text-center mb-10 relative z-10">
-                    <h2 class="text-3xl font-bold text-gray-900 mb-3 art-font" data-i18n="formTitle">Passez votre Commande</h2>
-                    <p class="text-gray-500 text-sm" data-i18n="formSubtitle">Remplissez les informations, le prix s'ajustera selon la taille.</p>
+                    <h2 class="text-3xl font-bold text-gray-900 mb-3 art-font" data-i18n="formTitle">قدم طلبك الآن</h2>
+                    <p class="text-gray-500 text-sm" data-i18n="formSubtitle">املأ المعلومات، وسيتغير الثمن تلقائياً حسب القياس.</p>
                 </div>
 
                 <form id="orderForm" class="space-y-6 relative z-10">
@@ -234,32 +234,32 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <!-- Name -->
                         <div class="col-span-1 md:col-span-2">
-                            <label class="block text-sm font-medium text-gray-700 mb-2" data-i18n="labelName">Nom Complet</label>
-                            <input type="text" id="name" required class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white transition-colors" placeholder="ex: Ayman" data-i18n-placeholder="placeholderName">
+                            <label class="block text-sm font-medium text-gray-700 mb-2" data-i18n="labelName">الاسم الكامل</label>
+                            <input type="text" id="name" required class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white transition-colors" placeholder="مثال: أيمن" data-i18n-placeholder="placeholderName">
                         </div>
 
                         <!-- Fixed Region (Souss Massa Only) -->
                         <div class="col-span-1 md:col-span-2 relative">
                             <div class="flex justify-between items-end mb-2">
-                                <label class="block text-sm font-medium text-gray-700" data-i18n="labelRegion">Région de Livraison</label>
-                                <span class="bg-orange-100 text-[#d97736] text-xs font-bold px-2 py-1 rounded" data-i18n="badgeExclusive">Uniquement</span>
+                                <label class="block text-sm font-medium text-gray-700" data-i18n="labelRegion">جهة التوصيل</label>
+                                <span class="bg-orange-100 text-[#d97736] text-xs font-bold px-2 py-1 rounded" data-i18n="badgeExclusive">حصرياً</span>
                             </div>
-                            <input type="text" id="region" value="Souss Massa" readonly class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-100 text-gray-600 font-semibold cursor-not-allowed select-none">
+                            <input type="text" id="region" value="سوس ماسة" readonly class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-100 text-gray-600 font-semibold cursor-not-allowed select-none">
                         </div>
 
                         <!-- Address / City within Souss Massa -->
                         <div class="col-span-1 md:col-span-2">
-                            <label class="block text-sm font-medium text-gray-700 mb-2" data-i18n="labelAddress">Ville / Adresse détaillée (dans Souss Massa)</label>
-                            <input type="text" id="address" required class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white transition-colors" placeholder="ex: Agadir, Hay Mohammadi..." data-i18n-placeholder="placeholderAddress">
+                            <label class="block text-sm font-medium text-gray-700 mb-2" data-i18n="labelAddress">المدينة / العنوان بالتفصيل (داخل سوس ماسة)</label>
+                            <input type="text" id="address" required class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white transition-colors" placeholder="مثال: أكادير، حي المحمدي..." data-i18n-placeholder="placeholderAddress">
                         </div>
 
                         <!-- Color Style with Arrow -->
                         <div class="col-span-1 md:col-span-2">
-                            <label class="block text-sm font-medium text-gray-700 mb-2" data-i18n="labelColor">Style de Couleur</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-2" data-i18n="labelColor">نمط الألوان</label>
                             <div class="relative">
                                 <select id="color" class="w-full px-4 py-3 pr-10 rtl:pr-4 rtl:pl-10 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white appearance-none cursor-pointer">
-                                    <option value="بالألوان" data-i18n="colorOption1">En Couleurs</option>
-                                    <option value="أبيض وأسود" data-i18n="colorOption2">Noir & Blanc</option>
+                                    <option value="بالألوان" data-i18n="colorOption1">بالألوان</option>
+                                    <option value="أبيض وأسود" data-i18n="colorOption2">أبيض وأسود</option>
                                 </select>
                                 <div class="pointer-events-none absolute inset-y-0 right-0 rtl:right-auto rtl:left-0 flex items-center px-4 text-gray-500">
                                     <i class="fas fa-chevron-down text-sm"></i>
@@ -269,12 +269,12 @@
 
                         <!-- Size with Arrow -->
                         <div class="col-span-1 md:col-span-2">
-                            <label class="block text-sm font-medium text-gray-700 mb-2" data-i18n="labelSize">Sélectionnez la Taille</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-2" data-i18n="labelSize">اختر القياس</label>
                             <div class="relative">
                                 <select id="size" onchange="updatePrice()" class="w-full px-4 py-3 pr-10 rtl:pr-4 rtl:pl-10 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white appearance-none cursor-pointer">
-                                    <option value="40x30 سم" data-price="250" data-i18n="sizeOption1">40x30 cm</option>
-                                    <option value="40x60 سم" data-price="300" data-i18n="sizeOption2">40x60 cm</option>
-                                    <option value="100x60 سم" data-price="400" data-i18n="sizeOption3">100x60 cm</option>
+                                    <option value="40x30 سم" data-price="250" data-i18n="sizeOption1">40x30 سم</option>
+                                    <option value="40x60 سم" data-price="300" data-i18n="sizeOption2">40x60 سم</option>
+                                    <option value="100x60 سم" data-price="400" data-i18n="sizeOption3">100x60 سم</option>
                                 </select>
                                 <div class="pointer-events-none absolute inset-y-0 right-0 rtl:right-auto rtl:left-0 flex items-center px-4 text-gray-500">
                                     <i class="fas fa-chevron-down text-sm"></i>
@@ -285,22 +285,22 @@
 
                     <!-- Dynamic Price Display -->
                     <div class="bg-gray-50 rounded-xl p-5 mt-4 text-center border border-gray-200">
-                        <p class="text-sm text-gray-500 mb-1" data-i18n="priceLabel">Prix Total</p>
-                        <p class="text-3xl font-bold text-gray-900 mb-1"><span id="priceDisplay">250</span> <span data-i18n="currency">DH</span></p>
-                        <p class="text-xs text-[#d97736] font-medium" data-i18n="freeShipping">Livraison gratuite incluse</p>
+                        <p class="text-sm text-gray-500 mb-1" data-i18n="priceLabel">الثمن الإجمالي</p>
+                        <p class="text-3xl font-bold text-gray-900 mb-1"><span id="priceDisplay">250</span> <span data-i18n="currency">درهم</span></p>
+                        <p class="text-xs text-[#d97736] font-medium" data-i18n="freeShipping">توصيل مجاني متضمن</p>
                     </div>
 
                     <!-- Notice -->
                     <div class="bg-blue-50 text-blue-800 p-4 rounded-xl text-sm flex items-start gap-3 mt-4">
                         <i class="fas fa-info-circle mt-0.5"></i>
                         <p data-i18n="whatsappNotice">
-                            <strong>Étape Suivante :</strong> Après avoir cliqué sur envoyer, WhatsApp s'ouvrira automatiquement. Vous pourrez envoyer la photo directement dans la discussion !
+                            <strong>الخطوة التالية :</strong> بعد الضغط على إرسال الطلب، سيُفتح تطبيق واتساب تلقائياً. يمكنك إرسال الصورة مباشرة في المحادثة!
                         </p>
                     </div>
 
                     <button type="submit" class="w-full bg-[#25D366] text-white py-4 rounded-xl font-bold text-lg hover:bg-[#1ebd5a] transition-colors shadow-lg shadow-[#25D366]/30 flex items-center justify-center gap-2 mt-6">
                         <i class="fab fa-whatsapp text-2xl"></i>
-                        <span data-i18n="btnSubmit">Envoyer la Commande sur WhatsApp</span>
+                        <span data-i18n="btnSubmit">إرسال الطلب عبر واتساب</span>
                     </button>
                 </form>
             </div>
@@ -318,27 +318,27 @@
                     <span class="font-bold text-2xl art-font">Tablo<span class="text-[#d97736]">wati</span></span>
                 </div>
                 <p class="text-gray-400 text-sm leading-relaxed" data-i18n="footerDesc">
-                    Transformer vos photos préférées en magnifiques toiles peintes à la main. Un art authentique créé avec de vrais pinceaux et de la passion.
+                    نحول صورك المفضلة إلى لوحات رائعة مرسومة باليد. فن أصيل بفرش حقيقية وشغف حقيقي.
                 </p>
             </div>
 
             <!-- Links -->
             <div>
-                <h4 class="font-bold text-lg mb-4" data-i18n="footerLinksTitle">Liens Rapides</h4>
+                <h4 class="font-bold text-lg mb-4" data-i18n="footerLinksTitle">روابط سريعة</h4>
                 <ul class="space-y-2 text-gray-400 text-sm">
-                    <li><a href="#gallery" class="hover:text-[#d97736] transition-colors" data-i18n="navGallery">Nos Réalisations</a></li>
-                    <li><a href="#how-it-works" class="hover:text-[#d97736] transition-colors" data-i18n="navHowItWorks">Comment ça Marche</a></li>
-                    <li><a href="#order" class="hover:text-[#d97736] transition-colors" data-i18n="navOrder">Commander</a></li>
+                    <li><a href="#gallery" class="hover:text-[#d97736] transition-colors" data-i18n="navGallery">أعمالنا</a></li>
+                    <li><a href="#how-it-works" class="hover:text-[#d97736] transition-colors" data-i18n="navHowItWorks">طريقة العمل</a></li>
+                    <li><a href="#order" class="hover:text-[#d97736] transition-colors" data-i18n="navOrder">اطلب الآن</a></li>
                 </ul>
             </div>
 
             <!-- Contact -->
             <div>
-                <h4 class="font-bold text-lg mb-4" data-i18n="footerContactTitle">Contactez nous</h4>
+                <h4 class="font-bold text-lg mb-4" data-i18n="footerContactTitle">تواصل معنا</h4>
                 <ul class="space-y-3 text-gray-400 text-sm">
                     <li class="flex items-start gap-2">
                         <i class="fas fa-map-marker-alt text-[#d97736] mt-1"></i>
-                        <span data-i18n="footerCity">Souss Massa</span>
+                        <span data-i18n="footerCity">سوس ماسة</span>
                     </li>
                     <li class="flex items-center gap-2">
                         <i class="fab fa-whatsapp text-[#d97736]"></i>
@@ -353,7 +353,7 @@
 
         </div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-gray-800 text-center text-gray-500 text-xs">
-            <p>&copy; 2026 Tablowati. <span data-i18n="footerRights">Tous droits réservés.</span></p>
+            <p>&copy; 2026 Tablowati. <span data-i18n="footerRights">جميع الحقوق محفوظة.</span></p>
         </div>
     </footer>
 
@@ -516,7 +516,6 @@
                 document.getElementById('region').value = "Souss Massa";
             }
 
-            // Using innerHTML for all elements to prevent raw HTML tags from showing
             const elements = document.querySelectorAll('[data-i18n]');
             elements.forEach(el => {
                 const key = el.getAttribute('data-i18n');
@@ -534,8 +533,8 @@
             });
         }
         
-        // Initialize default language
-        changeLanguage('fr');
+        // Initialize default language to Arabic
+        changeLanguage('ar');
     </script>
 </body>
 </html>
