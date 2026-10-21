@@ -1,321 +1,298 @@
 <!DOCTYPE html>
-<html lang="fr" dir="ltr" class="scroll-smooth">
+<html lang="fr" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tablowati Art Personnalisé et Murales</title>
-    
-    <!-- Google Fonts (Added Cairo for Arabic) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Tailwind CSS -->
+    <title>Tablowati | De Vrais Souvenirs Peints à la Main</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Phosphor Icons -->
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-
-    <!-- Tailwind Config for Custom Colors & Fonts -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        moroccan: {
-                            terracotta: '#c2410c', // Warm orange/red
-                            sand: '#f5f0e6',       // Warm background
-                            blue: '#1e3a8a',       // Deep majorelle style blue
-                            dark: '#1c1917',       // Dark text
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'Cairo', 'sans-serif'],
-                        serif: ['Playfair Display', 'Cairo', 'serif'],
-                    }
-                }
-            }
-        }
-    </script>
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Custom Styles & Moroccan Pattern Overlay */
+        :root {
+            --primary: #d97736;
+            --primary-dark: #b85b22;
+            --bg-light: #f9f6f0;
+            --text-dark: #2c2c2c;
+        }
         body {
-            background-color: #fafaf9;
-            color: #1c1917;
-            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            overflow-x: hidden;
         }
-        
-        .moroccan-pattern {
-            background-color: #f5f0e6;
-            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c2410c' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        body.arabic-font {
+            font-family: 'Cairo', sans-serif;
         }
-
-        .img-arched {
-            border-radius: 10rem 10rem 0.5rem 0.5rem;
+        h1, h2, h3, .art-font {
+            font-family: 'Playfair Display', serif;
         }
-
-        .fade-in {
+        body.arabic-font h1, body.arabic-font h2, body.arabic-font h3, body.arabic-font .art-font {
+            font-family: 'Cairo', sans-serif;
+        }
+        .hero-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d97736' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .slide-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transition: opacity 1s ease-in-out;
         }
-
-        .fade-in.visible {
+        .slide-image.active {
             opacity: 1;
-            transform: translateY(0);
         }
-
-        /* Adjustments for Arabic specific styling */
-        html[dir="rtl"] .font-serif {
-            font-family: 'Cairo', sans-serif !important;
-        }
-        html[dir="rtl"] .font-sans {
-            font-family: 'Cairo', sans-serif !important;
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(217, 119, 54, 0.2);
         }
     </style>
 </head>
-<body class="font-sans antialiased selection:bg-moroccan-terracotta selection:text-white">
+<body class="antialiased text-gray-800">
 
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 transition-all duration-300 bg-black/95 backdrop-blur-md border-b border-gray-800" id="navbar">
+    <nav class="fixed w-full z-50 bg-black/95 backdrop-blur-md shadow-sm transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <div class="flex-shrink-0 flex items-center">
-                    <a href="#" class="flex items-center gap-3 hover:opacity-90 transition-opacity">
-                        <img src="logo.png" alt="Tablowati Logo" class="h-12 w-auto object-contain">
-                        <span class="font-serif text-2xl font-bold text-white tracking-tight">Tablo<span class="text-moroccan-terracotta">wati</span></span>
-                    </a>
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-3">
+                    <img src="logo.png" alt="Tablowati Logo" class="h-12 w-auto object-contain">
+                    <span class="font-bold text-2xl tracking-tight text-white art-font">Tablo<span class="text-[#d97736]">wati</span></span>
                 </div>
-                <div class="hidden md:flex space-x-6 rtl:space-x-reverse items-center">
-                    <a href="#work" data-i18n="nav_work" class="text-gray-200 hover:text-moroccan-terracotta transition font-medium">Nos Réalisations</a>
-                    <a href="#how-it-works" data-i18n="nav_how" class="text-gray-200 hover:text-moroccan-terracotta transition font-medium">Comment ça Marche</a>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#gallery" class="text-gray-200 hover:text-[#d97736] font-medium transition-colors" data-i18n="navGallery">Nos Œuvres</a>
+                    <a href="#how-it-works" class="text-gray-200 hover:text-[#d97736] font-medium transition-colors" data-i18n="navHowItWorks">Comment ça Marche</a>
                     
-                    <!-- Language Switcher Desktop -->
-                    <div class="flex items-center gap-1 border-l rtl:border-l-0 rtl:border-r border-gray-700 pl-6 rtl:pl-0 rtl:pr-6 ml-2 rtl:ml-0 rtl:mr-2">
-                        <i class="ph ph-globe text-gray-200 text-lg"></i>
-                        <select id="lang-select-desktop" class="bg-transparent text-gray-200 border-none outline-none text-sm font-medium cursor-pointer focus:ring-0">
-                            <option value="fr" class="text-black">Français</option>
-                            <option value="ar" class="text-black">العربية</option>
-                        </select>
+                    <!-- Language Switcher -->
+                    <div class="relative group ml-4">
+                        <button class="flex items-center text-gray-200 hover:text-[#d97736] font-medium text-sm border border-gray-600 rounded-full px-3 py-1">
+                            <span id="currentLang">FR</span>
+                            <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </button>
+                        <div class="absolute right-0 mt-2 w-24 bg-white rounded-md shadow-lg py-1 hidden group-hover:block border border-gray-100">
+                            <button onclick="changeLanguage('fr')" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#d97736]">Français</button>
+                            <button onclick="changeLanguage('ar')" class="block w-full text-right px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#d97736] font-['Cairo']">العربية</button>
+                        </div>
                     </div>
 
-                    <a href="#order" data-i18n="nav_order" class="bg-moroccan-terracotta hover:bg-orange-800 text-white px-6 py-2.5 rounded-full font-medium transition shadow-lg shadow-orange-900/20 ml-2 rtl:ml-0 rtl:mr-2">Commander</a>
+                    <a href="#order" class="bg-[#d97736] text-white px-6 py-2.5 rounded-full font-medium hover:bg-[#b85b22] transition-colors shadow-md shadow-[#d97736]/20" data-i18n="navOrder">Commander</a>
                 </div>
-                <!-- Mobile menu button -->
+
+                <!-- Mobile Menu Button & Lang Switcher -->
                 <div class="md:hidden flex items-center gap-4">
-                    <!-- Language Switcher Mobile -->
-                    <select id="lang-select-mobile" class="bg-transparent text-gray-200 border-none outline-none text-sm font-medium cursor-pointer focus:ring-0">
-                        <option value="fr" class="text-black">FR</option>
-                        <option value="ar" class="text-black">AR</option>
-                    </select>
-                    
-                    <button class="text-white hover:text-moroccan-terracotta focus:outline-none" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
-                        <i class="ph ph-list text-3xl"></i>
+                    <!-- Mobile Lang Switch -->
+                    <div class="relative">
+                        <select id="mobileLang" onchange="changeLanguage(this.value)" class="appearance-none bg-transparent text-gray-200 font-medium text-sm pr-4 focus:outline-none cursor-pointer">
+                            <option value="fr" class="text-black">FR</option>
+                            <option value="ar" class="text-black">AR</option>
+                        </select>
+                        <i class="fas fa-chevron-down absolute right-0 top-1 text-gray-200 text-xs pointer-events-none"></i>
+                    </div>
+
+                    <button class="text-gray-200 hover:text-[#d97736] focus:outline-none" id="mobile-menu-btn">
+                        <i class="fas fa-bars text-2xl"></i>
                     </button>
                 </div>
             </div>
         </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-black border-b border-gray-800">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
-                <a href="#work" data-i18n="nav_work" class="block px-3 py-2 text-gray-200 hover:text-moroccan-terracotta font-medium">Nos Réalisations</a>
-                <a href="#how-it-works" data-i18n="nav_how" class="block px-3 py-2 text-gray-200 hover:text-moroccan-terracotta font-medium">Comment ça Marche</a>
-                <a href="#order" data-i18n="nav_order" class="block px-3 py-2 text-moroccan-terracotta font-bold">Commander</a>
+        <!-- Mobile Menu Panel -->
+        <div class="hidden md:hidden bg-black border-t border-gray-800" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#gallery" class="block px-3 py-2 text-gray-200 hover:text-[#d97736] font-medium" data-i18n="navGallery">Nos Œuvres</a>
+                <a href="#how-it-works" class="block px-3 py-2 text-gray-200 hover:text-[#d97736] font-medium" data-i18n="navHowItWorks">Comment ça Marche</a>
+                <a href="#order" class="block px-3 py-2 text-[#d97736] font-bold" data-i18n="navOrder">Commander</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section with Slideshow (7 Images) -->
-    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden moroccan-pattern">
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden hero-pattern">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="flex flex-col lg:flex-row items-center gap-12">
+                
                 <!-- Text Content -->
-                <div class="w-full lg:w-1/2 text-center lg:text-start">
-                    <span data-i18n="hero_badge" class="text-moroccan-terracotta font-bold tracking-wider uppercase text-sm mb-4 block">Art 100% Peint à la Main</span>
-                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-moroccan-dark leading-tight mb-6">
-                        <span data-i18n="hero_title1">De Vrais Coups de Pinceau pour</span> <span data-i18n="hero_title2" class="text-transparent bg-clip-text bg-gradient-to-r from-moroccan-terracotta to-orange-400">de Vrais Souvenirs</span>
+                <div class="w-full lg:w-1/2 text-center lg:text-left rtl:lg:text-right">
+                    <p class="text-[#d97736] font-semibold tracking-wider uppercase mb-3 text-sm" data-i18n="heroSubtitle">Art 100% Peint à la main</p>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-gray-900 art-font" data-i18n="heroTitle">
+                        De Vrais Coups de Pinceau pour de <span class="text-[#d97736]">Vrais Souvenirs</span>
                     </h1>
-                    <p data-i18n="hero_desc" data-i18n-html="true" class="text-base sm:text-lg text-gray-600 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                        Envoyez une photo de vous, de votre famille ou d'un proche, et je la peindrai personnellement à la main sur une toile premium. <strong class="text-moroccan-terracotta">C'est de l'art authentique créé avec de vrais pinceaux et de la peinture, PAS de l'impression numérique.</strong> Transformez vos moments spéciaux en chefs d'œuvre intemporels.
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0" data-i18n="heroDesc">
+                        Envoyez une photo de vous, de votre famille ou d'un proche, et je la peindrai personnellement à la main sur une toile premium. <strong class="text-[#d97736]">C'est de l'art authentique créé avec de vrais pinceaux et de la peinture, PAS de l'impression numérique.</strong> Transformez vos moments spéciaux en chefs d'œuvre intemporels.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                        <a href="#order" class="bg-moroccan-terracotta hover:bg-orange-800 text-white px-8 py-4 rounded-full font-medium text-lg transition text-center shadow-xl shadow-orange-900/30 flex items-center justify-center gap-2">
-                            <i class="ph-fill ph-whatsapp logo text-2xl"></i> <span data-i18n="hero_btn_wa">Commander via WhatsApp</span>
+                        <a href="#order" class="bg-[#d97736] text-white px-8 py-3.5 rounded-full font-semibold hover:bg-[#b85b22] transition-all transform hover:-translate-y-1 shadow-lg shadow-[#d97736]/30 flex items-center justify-center gap-2">
+                            <i class="fab fa-whatsapp text-xl"></i>
+                            <span data-i18n="btnOrderHero">Commander via WhatsApp</span>
                         </a>
-                        <a href="#work" data-i18n="hero_btn_gal" class="bg-white border-2 border-gray-200 hover:border-moroccan-blue text-moroccan-blue px-8 py-4 rounded-full font-medium text-lg transition text-center">
+                        <a href="#gallery" class="bg-white text-gray-800 border-2 border-gray-200 px-8 py-3.5 rounded-full font-semibold hover:border-gray-300 hover:bg-gray-50 transition-all text-center" data-i18n="btnGalleryHero">
                             Voir la Galerie
                         </a>
                     </div>
                 </div>
-                
-                <!-- Slideshow 7 Images -->
-                <div class="w-full lg:w-1/2 relative h-[400px] sm:h-[500px] lg:h-[600px] mt-10 lg:mt-0">
-                    <div class="relative w-full h-full max-w-md mx-auto lg:max-w-none lg:w-4/5 lg:float-right rtl:lg:float-left">
-                        <img src="1.jpg" alt="Artistic Canvas 1" class="slide absolute inset-0 w-full h-full object-cover img-arched shadow-2xl border-8 border-white transition-opacity duration-1000 opacity-100">
-                        <img src="2.jpg" alt="Artistic Canvas 2" class="slide absolute inset-0 w-full h-full object-cover img-arched shadow-2xl border-8 border-white transition-opacity duration-1000 opacity-0">
-                        <img src="3.jpg" alt="Artistic Canvas 3" class="slide absolute inset-0 w-full h-full object-cover img-arched shadow-2xl border-8 border-white transition-opacity duration-1000 opacity-0">
-                        <img src="4.jpg" alt="Artistic Canvas 4" class="slide absolute inset-0 w-full h-full object-cover img-arched shadow-2xl border-8 border-white transition-opacity duration-1000 opacity-0">
-                        <img src="5.jpg" alt="Artistic Canvas 5" class="slide absolute inset-0 w-full h-full object-cover img-arched shadow-2xl border-8 border-white transition-opacity duration-1000 opacity-0">
-                        <img src="6.jpg" alt="Artistic Canvas 6" class="slide absolute inset-0 w-full h-full object-cover img-arched shadow-2xl border-8 border-white transition-opacity duration-1000 opacity-0">
-                        <img src="7.jpg" alt="Artistic Canvas 7" class="slide absolute inset-0 w-full h-full object-cover img-arched shadow-2xl border-8 border-white transition-opacity duration-1000 opacity-0">
+
+                <!-- Slideshow Content -->
+                <div class="w-full lg:w-1/2 mt-10 lg:mt-0">
+                    <div class="relative w-full max-w-md mx-auto aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl border-8 border-white bg-gray-100">
+                        <!-- Slideshow Images -->
+                        <img src="1.jpg" alt="Art 1" class="slide-image active">
+                        <img src="2.jpg" alt="Art 2" class="slide-image">
+                        <img src="3.jpg" alt="Art 3" class="slide-image">
+                        <img src="4.jpg" alt="Art 4" class="slide-image">
+                        <img src="5.jpg" alt="Art 5" class="slide-image">
+                        <img src="6.jpg" alt="Art 6" class="slide-image">
+                        <img src="7.jpg" alt="Art 7" class="slide-image">
+                        <!-- Overlay Decor -->
+                        <div class="absolute inset-0 ring-1 ring-inset ring-black/10 rounded-[1.5rem]"></div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
 
-    <!-- How it Works Section -->
+    <!-- How it Works -->
     <section id="how-it-works" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16 fade-in">
-                <h2 data-i18n="how_title" class="text-4xl font-serif font-bold text-moroccan-dark mb-4">Comment ça Marche</h2>
-                <p data-i18n="how_desc" class="text-gray-600 max-w-2xl mx-auto text-lg">Simple transparent et conçu pour vous offrir l'œuvre d'art parfaite peinte à la main.</p>
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 art-font" data-i18n="stepsTitle">Comment ça Marche</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto" data-i18n="stepsSubtitle">Simple, transparent, et conçu pour vous offrir l'œuvre d'art parfaite peinte à la main.</p>
             </div>
-            
-            <div class="grid md:grid-cols-3 gap-10">
-                <!-- Step 1 -->
-                <div class="text-center fade-in bg-moroccan-sand/50 p-8 rounded-3xl relative">
-                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-md text-moroccan-blue text-2xl font-bold font-serif absolute -top-8 left-1/2 transform -translate-x-1/2 border-4 border-moroccan-sand">1</div>
-                    <i class="ph ph-frame-corners text-5xl text-moroccan-terracotta mb-4 mt-4 inline-block"></i>
-                    <h3 data-i18n="how_step1_title" class="text-xl font-bold text-moroccan-dark mb-3">Choisissez Votre Taille</h3>
-                    <p data-i18n="how_step1_desc" class="text-gray-600">Sélectionnez les dimensions de toile parfaites pour votre espace.</p>
-                </div>
-                
-                <!-- Step 2 -->
-                <div class="text-center fade-in bg-moroccan-sand/50 p-8 rounded-3xl relative">
-                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-md text-moroccan-blue text-2xl font-bold font-serif absolute -top-8 left-1/2 transform -translate-x-1/2 border-4 border-moroccan-sand">2</div>
-                    <i class="ph ph-image text-5xl text-moroccan-terracotta mb-4 mt-4 inline-block"></i>
-                    <h3 data-i18n="how_step2_title" class="text-xl font-bold text-moroccan-dark mb-3">Envoyez Votre Photo</h3>
-                    <p data-i18n="how_step2_desc" class="text-gray-600">Remplissez notre formulaire de commande. Vous serez redirigé vers WhatsApp pour envoyer la photo que vous souhaitez que je peigne.</p>
-                </div>
 
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <!-- Step 1 -->
+                <div class="text-center p-6 rounded-2xl bg-gray-50 border border-gray-100 hover:shadow-lg transition-shadow">
+                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm border border-gray-100">
+                        <i class="fas fa-images text-2xl text-[#d97736]"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900" data-i18n="step1Title">1. La Photo et la Taille</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed" data-i18n="step1Desc">Remplissez le formulaire avec la taille souhaitée. Ensuite, vous serez redirigé vers WhatsApp pour m'envoyer la photo que vous souhaitez peindre.</p>
+                </div>
+                <!-- Step 2 -->
+                <div class="text-center p-6 rounded-2xl bg-gray-50 border border-gray-100 hover:shadow-lg transition-shadow">
+                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm border border-gray-100">
+                        <i class="fas fa-check-circle text-2xl text-[#d97736]"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900" data-i18n="step2Title">2. Confirmation</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed" data-i18n="step2Desc">Je confirmerai les détails avec vous. Une petite avance est demandée pour garantir votre commande exclusive et commencer le travail.</p>
+                </div>
                 <!-- Step 3 -->
-                <div class="text-center fade-in bg-moroccan-sand/50 p-8 rounded-3xl relative">
-                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-md text-moroccan-blue text-2xl font-bold font-serif absolute -top-8 left-1/2 transform -translate-x-1/2 border-4 border-moroccan-sand">3</div>
-                    <i class="ph ph-paint-brush text-5xl text-moroccan-terracotta mb-4 mt-4 inline-block"></i>
-                    <h3 data-i18n="how_step3_title" class="text-xl font-bold text-moroccan-dark mb-3">Peinture et Livraison</h3>
-                    <p data-i18n="how_step3_desc" class="text-gray-600">Après l'acompte, je commencerai à peindre votre œuvre d'art avec de vrais pinceaux. Une fois terminée, elle est livrée à votre porte !</p>
+                <div class="text-center p-6 rounded-2xl bg-gray-50 border border-gray-100 hover:shadow-lg transition-shadow">
+                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm border border-gray-100">
+                        <i class="fas fa-paint-brush text-2xl text-[#d97736]"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900" data-i18n="step3Title">3. Peinture et Livraison</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed" data-i18n="step3Desc">Je commencerai à peindre votre toile à la main avec de vrais pinceaux. Une fois terminée, vous paierez le reste à la livraison.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Gallery Section (4 Images) -->
-    <section id="work" class="py-20 bg-moroccan-dark text-white">
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 hero-pattern">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-12 fade-in">
-                <div>
-                    <h2 data-i18n="gal_title" class="text-4xl font-serif font-bold mb-4">Nos Chefs d'œuvre</h2>
-                    <p data-i18n="gal_desc" class="text-gray-400 max-w-lg">Une sélection de nos toiles personnalisées et peintures murales récentes.</p>
-                </div>
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 art-font" data-i18n="galleryTitle">Nos Chefs d'œuvre</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto" data-i18n="gallerySubtitle">Un aperçu des toiles peintes à la main pour nos clients.</p>
             </div>
             
-            <!-- Gallery Grid: 4 items -->
+            <!-- 4 Images Grid -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Art 1 -->
-                <div class="group relative overflow-hidden rounded-2xl aspect-[4/5] fade-in">
-                    <img src="1.jpg" alt="Artwork 1" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                        <span data-i18n="gal_tag_canvas" class="text-moroccan-terracotta font-bold text-sm uppercase tracking-wide">Toile Personnalisée</span>
-                    </div>
+                <div class="aspect-[4/5] bg-gray-200 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group">
+                    <img src="1.jpg" alt="Canvas Art 1" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                 </div>
-                <!-- Art 2 -->
-                <div class="group relative overflow-hidden rounded-2xl aspect-[4/5] fade-in lg:translate-y-6">
-                    <img src="2.jpg" alt="Artwork 2" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                        <span data-i18n="gal_tag_mural" class="text-moroccan-terracotta font-bold text-sm uppercase tracking-wide">Peinture Murale</span>
-                    </div>
+                <div class="aspect-[4/5] bg-gray-200 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group">
+                    <img src="2.jpg" alt="Canvas Art 2" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                 </div>
-                <!-- Art 3 -->
-                <div class="group relative overflow-hidden rounded-2xl aspect-[4/5] fade-in">
-                    <img src="3.jpg" alt="Artwork 3" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                        <span data-i18n="gal_tag_canvas" class="text-moroccan-terracotta font-bold text-sm uppercase tracking-wide">Toile Personnalisée</span>
-                    </div>
+                <div class="aspect-[4/5] bg-gray-200 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group">
+                    <img src="3.jpg" alt="Canvas Art 3" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                 </div>
-                <!-- Art 4 -->
-                <div class="group relative overflow-hidden rounded-2xl aspect-[4/5] fade-in lg:translate-y-6">
-                    <img src="4.jpg" alt="Artwork 4" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                        <span data-i18n="gal_tag_canvas" class="text-moroccan-terracotta font-bold text-sm uppercase tracking-wide">Toile Personnalisée</span>
-                    </div>
+                <div class="aspect-[4/5] bg-gray-200 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group">
+                    <img src="4.jpg" alt="Canvas Art 4" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Order Section -->
-    <section id="order" class="py-24 moroccan-pattern relative">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="bg-white rounded-[2rem] shadow-2xl p-8 md:p-12 fade-in">
-                <div class="text-center mb-10">
-                    <h2 data-i18n="order_title" class="text-4xl font-serif font-bold text-moroccan-blue mb-4">Commencez Votre Commande</h2>
-                    <p data-i18n="order_desc" class="text-gray-600">Remplissez ce formulaire pour choisir vos détails. Nous échangerons sur WhatsApp pour recevoir votre photo et finaliser la commande.</p>
+    <section id="order" class="py-20 bg-white">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-[2rem] shadow-2xl p-8 md:p-12 border border-gray-100 relative overflow-hidden">
+                <!-- Decor -->
+                <div class="absolute top-0 right-0 w-32 h-32 bg-[#d97736] rounded-bl-full opacity-5 pointer-events-none"></div>
+                
+                <div class="text-center mb-10 relative z-10">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-3 art-font" data-i18n="formTitle">Passez votre Commande</h2>
+                    <p class="text-gray-500 text-sm" data-i18n="formSubtitle">Remplissez les informations, le prix s'ajustera selon la taille.</p>
                 </div>
 
-                <form id="orderForm" onsubmit="sendToWhatsApp(event)" class="space-y-6 text-start">
+                <form id="orderForm" class="space-y-6 relative z-10">
+                    
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label data-i18n="form_name" for="customerName" class="block text-sm font-medium text-gray-700 mb-2">Nom Complet</label>
-                            <input type="text" id="customerName" data-i18n-placeholder="form_name_ph" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-moroccan-terracotta focus:border-moroccan-terracotta outline-none transition bg-gray-50" placeholder="ex: Ayman">
+                        <!-- Name -->
+                        <div class="col-span-1 md:col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-2" data-i18n="labelName">Nom Complet</label>
+                            <input type="text" id="name" required class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white transition-colors" placeholder="ex: Ayman">
                         </div>
-                        
-                        <!-- Fixed City to Agadir Only -->
-                        <div>
-                            <label data-i18n="form_city" class="block text-sm font-medium text-gray-700 mb-2">Ville de Livraison</label>
-                            <div class="relative">
-                                <input type="text" id="customerCity" data-i18n-value="form_city_agadir" value="Agadir" readonly class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-100 text-gray-500 cursor-not-allowed outline-none font-bold">
-                                <span data-i18n="form_city_note" class="absolute right-3 top-3 text-xs font-bold text-moroccan-terracotta bg-orange-100 px-2.5 py-1.5 rounded-lg rtl:right-auto rtl:left-3">Uniquement</span>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label data-i18n="form_color" for="colorStyle" class="block text-sm font-medium text-gray-700 mb-2">Style de Couleur</label>
-                            <select id="colorStyle" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-moroccan-terracotta focus:border-moroccan-terracotta outline-none transition bg-gray-50">
-                                <option value="color1" data-i18n="form_color_opt1">En Couleurs</option>
-                                <option value="color2" data-i18n="form_color_opt2">Noir et Blanc</option>
+                        <!-- Fixed Region (Souss Massa Only) -->
+                        <div class="col-span-1 md:col-span-2 relative">
+                            <div class="flex justify-between items-end mb-2">
+                                <label class="block text-sm font-medium text-gray-700" data-i18n="labelRegion">Région de Livraison</label>
+                                <span class="bg-orange-100 text-[#d97736] text-xs font-bold px-2 py-1 rounded" data-i18n="badgeExclusive">Uniquement</span>
+                            </div>
+                            <input type="text" id="region" value="Souss Massa" readonly class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-100 text-gray-600 font-semibold cursor-not-allowed select-none">
+                        </div>
+
+                        <!-- Address / City within Souss Massa -->
+                        <div class="col-span-1 md:col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-2" data-i18n="labelAddress">Ville / Adresse détaillée (dans Souss Massa)</label>
+                            <input type="text" id="address" required class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white transition-colors" placeholder="ex: Agadir, Hay Mohammadi..." data-i18n-placeholder="placeholderAddress">
+                        </div>
+
+                        <!-- Color Style -->
+                        <div class="col-span-1 md:col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-2" data-i18n="labelColor">Style de Couleur</label>
+                            <select id="color" class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white appearance-none cursor-pointer">
+                                <option value="Couleur" data-i18n="colorOption1">En Couleurs</option>
+                                <option value="Noir_Blanc" data-i18n="colorOption2">Noir & Blanc</option>
                             </select>
                         </div>
-                        
-                        <!-- Sizes with Prices as Values -->
-                        <div>
-                            <label data-i18n="form_size" for="canvasSize" class="block text-sm font-medium text-gray-700 mb-2">Sélectionnez la Taille</label>
-                            <select id="canvasSize" onchange="updatePrice()" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-moroccan-terracotta focus:border-moroccan-terracotta outline-none transition bg-gray-50 font-medium text-moroccan-blue">
-                                <option value="250" data-i18n="form_size_opt1">Petit (40x30 cm) - 250 DH</option>
-                                <option value="300" data-i18n="form_size_opt2">Moyen (40x60 cm) - 300 DH</option>
-                                <option value="400" data-i18n="form_size_opt3">Grand (100x60 cm) - 400 DH</option>
+
+                        <!-- Size -->
+                        <div class="col-span-1 md:col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-2" data-i18n="labelSize">Sélectionnez la Taille</label>
+                            <select id="size" onchange="updatePrice()" class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white appearance-none cursor-pointer">
+                                <option value="40x30" data-price="250" data-i18n="sizeOption1">40x30 cm</option>
+                                <option value="40x60" data-price="300" data-i18n="sizeOption2">40x60 cm</option>
+                                <option value="100x60" data-price="400" data-i18n="sizeOption3">100x60 cm</option>
                             </select>
                         </div>
                     </div>
 
-                    <!-- Dynamic Price Display Component -->
-                    <div class="bg-gradient-to-r from-gray-50 to-white border border-gray-200 p-5 rounded-2xl flex justify-between items-center shadow-sm">
-                        <div class="flex items-center gap-4">
-                            <div class="bg-orange-100 p-3 rounded-xl hidden sm:block">
-                                <i class="ph-fill ph-tag text-3xl text-moroccan-terracotta"></i>
-                            </div>
-                            <div>
-                                <span data-i18n="form_total" class="text-gray-800 font-bold block text-lg">Prix de la toile</span>
-                                <span data-i18n="form_total_sub" class="text-sm text-gray-500 font-medium">Livraison gratuite incluse</span>
-                            </div>
-                        </div>
-                        <div class="text-3xl sm:text-4xl font-black text-moroccan-blue tracking-tight">
-                            <span id="priceDisplay">250</span> <span class="text-xl sm:text-2xl text-gray-500 font-bold">DH</span>
-                        </div>
+                    <!-- Dynamic Price Display -->
+                    <div class="bg-gray-50 rounded-xl p-5 mt-4 text-center border border-gray-200">
+                        <p class="text-sm text-gray-500 mb-1" data-i18n="priceLabel">Prix Total</p>
+                        <p class="text-3xl font-bold text-gray-900 mb-1"><span id="priceDisplay">250</span> <span data-i18n="currency">DH</span></p>
+                        <p class="text-xs text-[#d97736] font-medium" data-i18n="freeShipping">Livraison gratuite incluse</p>
                     </div>
 
-                    <div class="bg-blue-50 border-l-4 rtl:border-l-0 rtl:border-r-4 border-moroccan-blue p-4 rounded-xl flex gap-4 items-start">
-                        <i class="ph-fill ph-info text-2xl text-moroccan-blue mt-1"></i>
-                        <p data-i18n="form_info" data-i18n-html="true" class="text-sm text-blue-900 leading-relaxed">
-                            <strong>Étape Suivante :</strong> Après avoir cliqué sur commander, WhatsApp s'ouvrira automatiquement. Vous pourrez envoyer la photo directement dans la discussion !
+                    <!-- Notice -->
+                    <div class="bg-blue-50 text-blue-800 p-4 rounded-xl text-sm flex items-start gap-3 mt-4">
+                        <i class="fas fa-info-circle mt-0.5"></i>
+                        <p data-i18n="whatsappNotice" data-i18n-html="true">
+                            <strong>Étape Suivante :</strong> Après avoir cliqué sur envoyer, WhatsApp s'ouvrira automatiquement. Vous pourrez envoyer la photo directement dans la discussion !
                         </p>
                     </div>
 
-                    <button type="submit" class="w-full bg-[#25D366] hover:bg-[#1ebd5c] text-white py-4 rounded-xl font-bold text-lg transition shadow-lg shadow-green-900/20 flex items-center justify-center gap-2">
-                        <i class="ph-fill ph-whatsapp logo text-3xl"></i> <span data-i18n="form_btn">Envoyer la Commande sur WhatsApp</span>
+                    <button type="submit" class="w-full bg-[#25D366] text-white py-4 rounded-xl font-bold text-lg hover:bg-[#1ebd5a] transition-colors shadow-lg shadow-[#25D366]/30 flex items-center justify-center gap-2 mt-6">
+                        <i class="fab fa-whatsapp text-2xl"></i>
+                        <span data-i18n="btnSubmit">Envoyer la Commande sur WhatsApp</span>
                     </button>
                 </form>
             </div>
@@ -323,252 +300,240 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-moroccan-dark text-white pt-16 pb-8 border-t border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
-                <div>
-                    <a href="#" class="flex items-center gap-3 mb-4 hover:opacity-90 transition-opacity">
-                        <img src="logo.png" alt="Tablowati Logo Footer" class="h-14 w-auto object-contain">
-                        <span class="font-serif text-3xl font-bold text-white tracking-tight">Tablo<span class="text-moroccan-terracotta">wati</span></span>
-                    </a>
-                    <p data-i18n="footer_desc" class="text-gray-400">Transformer vos photos préférées en magnifiques toiles peintes à la main. Un art authentique créé avec de vrais pinceaux et de la passion.</p>
+    <footer class="bg-[#1a1a1a] text-white py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+            <!-- Brand -->
+            <div>
+                <div class="flex items-center gap-2 mb-4">
+                    <img src="logo.png" alt="Tablowati Logo Footer" class="h-10 w-auto object-contain">
+                    <span class="font-bold text-2xl art-font">Tablo<span class="text-[#d97736]">wati</span></span>
                 </div>
-                <div>
-                    <h4 data-i18n="footer_links" class="font-bold text-lg mb-4">Liens Rapides</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="#work" data-i18n="nav_work" class="hover:text-moroccan-terracotta transition">Nos Réalisations</a></li>
-                        <li><a href="#how-it-works" data-i18n="nav_how" class="hover:text-moroccan-terracotta transition">Comment ça Marche</a></li>
-                        <li><a href="#order" data-i18n="nav_order" class="hover:text-moroccan-terracotta transition">Commander</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 data-i18n="footer_contact" class="font-bold text-lg mb-4">Contactez nous</h4>
-                    <ul class="space-y-2 text-gray-400" dir="ltr">
-                        <li class="flex items-center gap-2 rtl:justify-end"><i class="ph ph-map-pin text-moroccan-terracotta"></i> Agadir</li>
-                        <li class="flex items-center gap-2 rtl:justify-end"><i class="ph ph-whatsapp logo text-moroccan-terracotta"></i> +212 617 157941</li>
-                        <li class="flex items-center gap-2 rtl:justify-end"><i class="ph ph-instagram-logo text-moroccan-terracotta"></i> @Tablowati</li>
-                    </ul>
-                </div>
+                <p class="text-gray-400 text-sm leading-relaxed" data-i18n="footerDesc">
+                    Transformer vos photos préférées en magnifiques toiles peintes à la main. Un art authentique créé avec de vrais pinceaux et de la passion.
+                </p>
             </div>
-            <div class="text-center text-gray-600 text-sm pt-8 border-t border-gray-800 flex justify-center gap-1 flex-wrap">
-                <span>&copy; <span id="year"></span> Tablowati.</span> <span data-i18n="footer_rights">Tous droits réservés.</span>
+
+            <!-- Links -->
+            <div>
+                <h4 class="font-bold text-lg mb-4" data-i18n="footerLinksTitle">Liens Rapides</h4>
+                <ul class="space-y-2 text-gray-400 text-sm">
+                    <li><a href="#gallery" class="hover:text-[#d97736] transition-colors" data-i18n="navGallery">Nos Réalisations</a></li>
+                    <li><a href="#how-it-works" class="hover:text-[#d97736] transition-colors" data-i18n="navHowItWorks">Comment ça Marche</a></li>
+                    <li><a href="#order" class="hover:text-[#d97736] transition-colors" data-i18n="navOrder">Commander</a></li>
+                </ul>
             </div>
+
+            <!-- Contact -->
+            <div>
+                <h4 class="font-bold text-lg mb-4" data-i18n="footerContactTitle">Contactez nous</h4>
+                <ul class="space-y-3 text-gray-400 text-sm">
+                    <li class="flex items-start gap-2">
+                        <i class="fas fa-map-marker-alt text-[#d97736] mt-1"></i>
+                        <span data-i18n="footerCity">Souss Massa</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i class="fab fa-whatsapp text-[#d97736]"></i>
+                        <span dir="ltr">+212 617 157941</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i class="fab fa-instagram text-[#d97736]"></i>
+                        <span>@Tablowati</span>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-gray-800 text-center text-gray-500 text-xs">
+            <p>&copy; 2026 Tablowati. <span data-i18n="footerRights">Tous droits réservés.</span></p>
         </div>
     </footer>
 
-    <!-- JavaScript For Languages, Slideshow, Price and WhatsApp -->
+    <!-- Scripts -->
     <script>
-        // --- 1. SET CURRENT YEAR ---
-        document.getElementById('year').textContent = new Date().getFullYear();
+        // --- 1. MOBILE MENU TOGGLE ---
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
 
-        // --- 2. SCROLL ANIMATIONS ---
-        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-        document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
-
-        // --- 3. SLIDESHOW LOGIC (7 IMAGES) ---
-        const slides = document.querySelectorAll('.slide');
+        // --- 2. HERO SLIDESHOW LOGIC (1.jpg to 7.jpg) ---
+        const slides = document.querySelectorAll('.slide-image');
         let currentSlide = 0;
-        if (slides.length > 0) {
+        if(slides.length > 0) {
             setInterval(() => {
-                slides[currentSlide].classList.remove('opacity-100');
-                slides[currentSlide].classList.add('opacity-0');
+                slides[currentSlide].classList.remove('active');
                 currentSlide = (currentSlide + 1) % slides.length;
-                slides[currentSlide].classList.remove('opacity-0');
-                slides[currentSlide].classList.add('opacity-100');
-            }, 3500); 
+                slides[currentSlide].classList.add('active');
+            }, 3500);
         }
 
-        // --- 4. DYNAMIC PRICE LOGIC ---
+        // --- 3. DYNAMIC PRICE UPDATE ---
         function updatePrice() {
-            const sizeSelect = document.getElementById('canvasSize');
-            const price = sizeSelect.value;
-            // Update the big price display
-            document.getElementById('priceDisplay').textContent = price;
+            const sizeSelect = document.getElementById('size');
+            const priceDisplay = document.getElementById('priceDisplay');
+            const selectedOption = sizeSelect.options[sizeSelect.selectedIndex];
+            const price = selectedOption.getAttribute('data-price');
+            priceDisplay.textContent = price;
         }
+
+        // --- 4. FORM TO WHATSAPP ---
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const phoneNumber = "212617157941";
+            const name = document.getElementById('name').value;
+            const region = document.getElementById('region').value; // Souss Massa
+            const address = document.getElementById('address').value;
+            const colorSelect = document.getElementById('color');
+            const color = colorSelect.options[colorSelect.selectedIndex].text;
+            const sizeSelect = document.getElementById('size');
+            const size = sizeSelect.options[sizeSelect.selectedIndex].text;
+            const price = sizeSelect.options[sizeSelect.selectedIndex].getAttribute('data-price');
+            const currentLang = document.documentElement.lang;
+
+            let text = "";
+            if (currentLang === 'ar') {
+                text = `مرحباً، بغيت نطلب طابلو مرسوم باليد:\n\nالاسم: ${name}\nالجهة: ${region}\nالمدينة/العنوان: ${address}\nاللون: ${color}\nالقياس: ${size}\nالثمن الإجمالي: ${price} درهم\n\nهاهي التصويرة ديالي:`;
+            } else {
+                text = `Bonjour, je souhaite commander une toile peinte à la main :\n\nNom: ${name}\nRégion: ${region}\nVille/Adresse: ${address}\nCouleur: ${color}\nTaille: ${size}\nPrix Total: ${price} DH\n\nVoici ma photo :`;
+            }
+            
+            const encodedText = encodeURIComponent(text);
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedText}`;
+            window.open(whatsappURL, '_blank');
+        });
 
         // --- 5. TRANSLATION DICTIONARY ---
-        let currentLang = 'fr';
         const translations = {
             fr: {
-                nav_work: "Nos Réalisations",
-                nav_how: "Comment ça Marche",
-                nav_order: "Commander",
-                hero_badge: "Art 100% Peint à la Main",
-                hero_title1: "De Vrais Coups de Pinceau pour ",
-                hero_title2: "de Vrais Souvenirs",
-                hero_desc: "Envoyez une photo de vous, de votre famille ou d'un proche, et je la peindrai personnellement à la main sur une toile premium. <strong class='text-moroccan-terracotta'>C'est de l'art authentique créé avec de vrais pinceaux et de la peinture, PAS de l'impression numérique.</strong> Transformez vos moments spéciaux en chefs d'œuvre intemporels.",
-                hero_btn_wa: "Commander via WhatsApp",
-                hero_btn_gal: "Voir la Galerie",
-                how_title: "Comment ça Marche",
-                how_desc: "Simple transparent et conçu pour vous offrir l'œuvre d'art parfaite peinte à la main.",
-                how_step1_title: "Choisissez Votre Taille",
-                how_step1_desc: "Sélectionnez les dimensions de toile parfaites pour votre espace.",
-                how_step2_title: "Envoyez Votre Photo",
-                how_step2_desc: "Remplissez notre formulaire de commande. Vous serez redirigé vers WhatsApp pour envoyer la photo que vous souhaitez que je peigne.",
-                how_step3_title: "Peinture et Livraison",
-                how_step3_desc: "Après l'acompte, je commencerai à peindre votre œuvre d'art avec de vrais pinceaux. Une fois terminée, elle est livrée à votre porte !",
-                gal_title: "Nos Chefs d'œuvre",
-                gal_desc: "Une sélection de nos toiles personnalisées et peintures murales récentes.",
-                gal_tag_canvas: "Toile Personnalisée",
-                gal_tag_mural: "Peinture Murale",
-                order_title: "Commencez Votre Commande",
-                order_desc: "Remplissez ce formulaire pour choisir vos détails. Nous échangerons sur WhatsApp pour recevoir votre photo et finaliser la commande.",
-                form_name: "Nom Complet",
-                form_name_ph: "ex: Ayman",
-                form_region: "Région de Livraison",
-                form_region_fixed: "Souss Massa",
-                form_region_note: "Uniquement",
-                form_color: "Style de Couleur",
-                form_color_opt1: "En Couleurs",
-                form_color_opt2: "Noir et Blanc",
-                form_size: "Sélectionnez la Taille",
-                form_size_opt1: "Petit (40x30 cm) - 250 DH",
-                form_size_opt2: "Moyen (40x60 cm) - 300 DH",
-                form_size_opt3: "Grand (100x60 cm) - 400 DH",
-                form_total: "Prix de la toile",
-                form_total_sub: "Livraison gratuite incluse",
-                form_info: "<strong>Étape Suivante :</strong> Après avoir cliqué sur commander, WhatsApp s'ouvrira automatiquement. Vous pourrez envoyer la photo directement dans la discussion !",
-                form_btn: "Envoyer la Commande sur WhatsApp",
-                footer_desc: "Transformer vos photos préférées en magnifiques toiles peintes à la main. Un art authentique créé avec de vrais pinceaux et de la passion.",
-                footer_links: "Liens Rapides",
-                footer_contact: "Contactez nous",
-                footer_rights: "Tous droits réservés."
+                navGallery: "Nos Œuvres",
+                navHowItWorks: "Comment ça Marche",
+                navOrder: "Commander",
+                heroSubtitle: "Art 100% Peint à la main",
+                heroTitle: "De Vrais Coups de Pinceau pour de <span class='text-[#d97736]'>Vrais Souvenirs</span>",
+                heroDesc: "Envoyez une photo de vous, de votre famille ou d'un proche, et je la peindrai personnellement à la main sur une toile premium. <strong class='text-[#d97736]'>C'est de l'art authentique créé avec de vrais pinceaux et de la peinture, PAS de l'impression numérique.</strong> Transformez vos moments spéciaux en chefs d'œuvre intemporels.",
+                btnOrderHero: "Commander via WhatsApp",
+                btnGalleryHero: "Voir la Galerie",
+                stepsTitle: "Comment ça Marche",
+                stepsSubtitle: "Simple, transparent, et conçu pour vous offrir l'œuvre d'art parfaite peinte à la main.",
+                step1Title: "1. La Photo et la Taille",
+                step1Desc: "Remplissez le formulaire avec la taille souhaitée. Ensuite, vous serez redirigé vers WhatsApp pour m'envoyer la photo que vous souhaitez peindre.",
+                step2Title: "2. Confirmation",
+                step2Desc: "Je confirmerai les détails avec vous. Une petite avance est demandée pour garantir votre commande exclusive et commencer le travail.",
+                step3Title: "3. Peinture et Livraison",
+                step3Desc: "Je commencerai à peindre votre toile à la main avec de vrais pinceaux. Une fois terminée, vous paierez le reste à la livraison.",
+                galleryTitle: "Nos Chefs d'œuvre",
+                gallerySubtitle: "Un aperçu des toiles peintes à la main pour nos clients.",
+                formTitle: "Passez votre Commande",
+                formSubtitle: "Remplissez les informations, le prix s'ajustera selon la taille.",
+                labelName: "Nom Complet",
+                labelRegion: "Région de Livraison",
+                badgeExclusive: "Uniquement",
+                labelAddress: "Ville / Adresse détaillée (dans Souss Massa)",
+                placeholderAddress: "ex: Agadir, Hay Mohammadi...",
+                labelColor: "Style de Couleur",
+                colorOption1: "En Couleurs",
+                colorOption2: "Noir & Blanc",
+                labelSize: "Sélectionnez la Taille",
+                sizeOption1: "40x30 cm",
+                sizeOption2: "40x60 cm",
+                sizeOption3: "100x60 cm",
+                priceLabel: "Prix Total",
+                currency: "DH",
+                freeShipping: "Livraison gratuite incluse",
+                whatsappNotice: "<strong>Étape Suivante :</strong> Après avoir cliqué sur envoyer, WhatsApp s'ouvrira automatiquement. Vous pourrez envoyer la photo directement dans la discussion !",
+                btnSubmit: "Envoyer la Commande sur WhatsApp",
+                footerDesc: "Transformer vos photos préférées en magnifiques toiles peintes à la main. Un art authentique créé avec de vrais pinceaux et de la passion.",
+                footerLinksTitle: "Liens Rapides",
+                footerContactTitle: "Contactez nous",
+                footerCity: "Souss Massa",
+                footerRights: "Tous droits réservés."
             },
             ar: {
-                nav_work: "أعمالنا الفنية",
-                nav_how: "طريقة العمل",
-                nav_order: "اطلب الآن",
-                hero_badge: "فن مرسوم باليد 100%",
-                hero_title1: "لمسات حقيقية بالفرشاة لـ ",
-                hero_title2: "ذكريات حقيقية",
-                hero_desc: "أرسل صورة لك، لعائلتك، أو لشخص عزيز، وسأقوم برسمها شخصياً باليد على لوحة قماشية ممتازة. <strong class='text-moroccan-terracotta'>هذا فن أصيل باستخدام فرش وصباغة حقيقية، وليس طباعة رقمية.</strong> حوّل لحظاتك الخاصة إلى تحف فنية خالدة.",
-                hero_btn_wa: "اطلب عبر واتساب",
-                hero_btn_gal: "شاهد المعرض",
-                how_title: "طريقة العمل",
-                how_desc: "بسيطة وشفافة ومصممة لتوفر لك اللوحة الفنية المثالية المرسومة باليد.",
-                how_step1_title: "اختر القياس",
-                how_step1_desc: "حدد أبعاد اللوحة المثالية للمساحة الخاصة بك.",
-                how_step2_title: "أرسل صورتك",
-                how_step2_desc: "املأ استمارة الطلب. سيتم توجيهك إلى واتساب لإرسال الصورة التي تريد مني رسمها.",
-                how_step3_title: "الرسم والتوصيل",
-                how_step3_desc: "بعد دفع التسبيق، سأبدأ في رسم لوحتك بفرش حقيقية. وبمجرد الانتهاء، سيتم توصيلها إلى باب منزلك!",
-                gal_title: "تحفنا الفنية",
-                gal_desc: "تشكيلة من لوحاتنا الشخصية والجداريات الحديثة.",
-                gal_tag_canvas: "لوحة شخصية",
-                gal_tag_mural: "رسم جداري",
-                order_title: "ابدأ طلبك الآن",
-                order_desc: "املأ هذه الاستمارة لاختيار تفاصيل اللوحة. سنتواصل عبر واتساب لاستلام الصورة وإتمام الطلب.",
-                form_name: "الاسم الكامل",
-                form_name_ph: "مثال: أيمن",
-                form_region: "جهة التوصيل",
-                form_region_fixed: "سوس ماسة",
-                form_region_note: "حصرياً",
-                form_color: "نوع الألوان",
-                form_color_opt1: "بالألوان",
-                form_color_opt2: "أبيض وأسود",
-                form_size: "اختر القياس",
-                form_size_opt1: "صغير (40x30 سم) - 250 درهم",
-                form_size_opt2: "متوسط (40x60 سم) - 300 درهم",
-                form_size_opt3: "كبير (100x60 سم) - 400 درهم",
-                form_total: "ثمن اللوحة",
-                form_total_sub: "توصيل مجاني متضمن",
-                form_info: "<strong>الخطوة التالية :</strong> بعد الضغط على إرسال الطلب، سيُفتح تطبيق واتساب تلقائياً. يمكنك إرسال الصورة مباشرة في المحادثة!",
-                form_btn: "إرسال الطلب عبر واتساب",
-                footer_desc: "نحوّل صورك المفضلة إلى لوحات فنية رائعة مرسومة باليد. فن أصيل بفرش حقيقية وشغف كبير.",
-                footer_links: "روابط سريعة",
-                footer_contact: "اتصل بنا",
-                footer_location: "سوس ماسة",
-                footer_rights: "جميع الحقوق محفوظة."
+                navGallery: "أعمالنا",
+                navHowItWorks: "طريقة العمل",
+                navOrder: "اطلب الآن",
+                heroSubtitle: "فن مرسوم باليد 100%",
+                heroTitle: "لمسات فرشاة حقيقية لذكريات <span class='text-[#d97736]'>لا تُنسى</span>",
+                heroDesc: "أرسل صورتك، صورة عائلتك أو شخص عزيز، وسأقوم برسمها يدوياً بالكامل على قماش عالي الجودة. <strong class='text-[#d97736]'>هذا فن أصيل تم إنشاؤه بفرش وألوان حقيقية، وليس طباعة رقمية.</strong> حوّل لحظاتك الخاصة إلى تحف فنية تدوم للأبد.",
+                btnOrderHero: "الطلب عبر واتساب",
+                btnGalleryHero: "تصفح المعرض",
+                stepsTitle: "طريقة العمل",
+                stepsSubtitle: "بسيطة، واضحة، ومصممة لتقديم اللوحة الفنية المثالية لك.",
+                step1Title: "1. الصورة والقياس",
+                step1Desc: "املأ الاستمارة بالقياس المطلوب. بعدها سيتم توجيهك لواتساب لإرسال الصورة التي تريد رسمها.",
+                step2Title: "2. التأكيد",
+                step2Desc: "سأؤكد معك التفاصيل. نطلب تسبيقاً بسيطاً لضمان طلبك الحصري والبدء في العمل.",
+                step3Title: "3. الرسم والتوصيل",
+                step3Desc: "سأبدأ برسم لوحتك يدوياً بالفرشاة. عند الانتهاء، ستدفع الباقي عند الاستلام.",
+                galleryTitle: "أعمالنا الفنية",
+                gallerySubtitle: "نظرة على بعض اللوحات المرسومة يدوياً لزبنائنا.",
+                formTitle: "قدم طلبك الآن",
+                formSubtitle: "املأ المعلومات، وسيتغير الثمن تلقائياً حسب القياس.",
+                labelName: "الاسم الكامل",
+                labelRegion: "جهة التوصيل",
+                badgeExclusive: "حصرياً",
+                labelAddress: "المدينة / العنوان بالتفصيل (داخل سوس ماسة)",
+                placeholderAddress: "مثال: أكادير، حي المحمدي...",
+                labelColor: "نمط الألوان",
+                colorOption1: "بالألوان",
+                colorOption2: "أبيض وأسود",
+                labelSize: "اختر القياس",
+                sizeOption1: "40x30 سم",
+                sizeOption2: "40x60 سم",
+                sizeOption3: "100x60 سم",
+                priceLabel: "الثمن الإجمالي",
+                currency: "درهم",
+                freeShipping: "توصيل مجاني متضمن",
+                whatsappNotice: "<strong>الخطوة التالية :</strong> بعد الضغط على إرسال الطلب، سيُفتح تطبيق واتساب تلقائياً. يمكنك إرسال الصورة مباشرة في المحادثة!",
+                btnSubmit: "إرسال الطلب عبر واتساب",
+                footerDesc: "نحول صورك المفضلة إلى لوحات رائعة مرسومة باليد. فن أصيل بفرش حقيقية وشغف حقيقي.",
+                footerLinksTitle: "روابط سريعة",
+                footerContactTitle: "تواصل معنا",
+                footerCity: "سوس ماسة",
+                footerRights: "جميع الحقوق محفوظة."
             }
         };
 
-        // --- 6. LANGUAGE SWITCHER LOGIC ---
-        function switchLanguage(lang) {
-            currentLang = lang;
+        function changeLanguage(lang) {
             document.documentElement.lang = lang;
-            
-            // Switch Text Direction
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.getElementById('currentLang').textContent = lang.toUpperCase();
+            document.getElementById('mobileLang').value = lang;
+
             if (lang === 'ar') {
-                document.documentElement.dir = 'rtl';
+                document.body.classList.add('arabic-font');
+                document.getElementById('region').value = "سوس ماسة";
             } else {
-                document.documentElement.dir = 'ltr';
+                document.body.classList.remove('arabic-font');
+                document.getElementById('region').value = "Souss Massa";
             }
 
-            // Update all translatable texts
-            document.querySelectorAll('[data-i18n]').forEach(element => {
-                const key = element.getAttribute('data-i18n');
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
                 if (translations[lang][key]) {
-                    if (element.hasAttribute('data-i18n-html')) {
-                        element.innerHTML = translations[lang][key];
+                    if (el.getAttribute('data-i18n-html') === 'true') {
+                        el.innerHTML = translations[lang][key];
                     } else {
-                        element.textContent = translations[lang][key];
+                        el.textContent = translations[lang][key];
                     }
                 }
             });
 
-            // Update placeholders & input values (like region)
-            document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
-                const key = element.getAttribute('data-i18n-placeholder');
+            const placeholders = document.querySelectorAll('[data-i18n-placeholder]');
+            placeholders.forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
                 if (translations[lang][key]) {
-                    element.placeholder = translations[lang][key];
+                    el.placeholder = translations[lang][key];
                 }
             });
-
-            document.querySelectorAll('[data-i18n-value]').forEach(element => {
-                const key = element.getAttribute('data-i18n-value');
-                if (translations[lang][key]) {
-                    element.value = translations[lang][key];
-                }
-            });
-            
-            // Sync dropdowns
-            document.getElementById('lang-select-desktop').value = lang;
-            document.getElementById('lang-select-mobile').value = lang;
         }
-
-        // Attach events to selects
-        document.getElementById('lang-select-desktop').addEventListener('change', (e) => switchLanguage(e.target.value));
-        document.getElementById('lang-select-mobile').addEventListener('change', (e) => switchLanguage(e.target.value));
-
-        // --- 7. WHATSAPP ORDER LOGIC ---
-        function sendToWhatsApp(event) {
-            event.preventDefault(); 
-            
-            const phoneNumber = "212617157941"; 
-            
-            const name = document.getElementById('customerName').value;
-            const region = document.getElementById('customerRegion').value;
-            const price = document.getElementById('canvasSize').value;
-            
-            // Get selected text based on current language
-            const colorSelect = document.getElementById('colorStyle');
-            const colorText = colorSelect.options[colorSelect.selectedIndex].text;
-            
-            const sizeSelect = document.getElementById('canvasSize');
-            // Clean the text to just send the Size + dimension part
-            const fullSizeText = sizeSelect.options[sizeSelect.selectedIndex].text;
-            const sizeText = fullSizeText.split('-')[0].trim(); 
-
-            // Generate message based on language
-            let message = "";
-            if (currentLang === 'fr') {
-                message = `*Nouvelle Commande Tablowati* 🎨\n\n*Nom :* ${name}\n*Région :* ${region}\n*Couleur :* ${colorText}\n*Taille :* ${sizeText}\n*Prix de la toile :* ${price} DH\n\n_Je suis prêt à envoyer ma photo pour la toile !_`;
-            } else {
-                message = `*طلب جديد تابلواتي* 🎨\n\n*الاسم :* ${name}\n*الجهة :* ${region}\n*الألوان :* ${colorText}\n*القياس :* ${sizeText}\n*ثمن اللوحة :* ${price} درهم\n\n_أنا مستعد لإرسال صورتي للوحة!_`;
-            }
-
-            const encodedMessage = encodeURIComponent(message);
-            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-            window.open(whatsappURL, '_blank');
-        }
+        
+        // Ensure default UI state matches initial lang
+        changeLanguage('fr');
     </script>
 </body>
 </html>
